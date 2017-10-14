@@ -1,0 +1,6 @@
+flask
+flask_wtf
+#wtforms
+xgboost  #http://xgboost.readthedocs.io/en/latest/build.html
+pandas
+sklearn

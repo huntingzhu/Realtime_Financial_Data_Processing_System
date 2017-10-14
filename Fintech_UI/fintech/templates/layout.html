@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>{{ config['SITE_TITLE'] }}</title>
+    <link rel="stylesheet" href="/static/css/main.css" type="text/css"/>
+    <link rel="icon"       href="/static/favicon.ico" type="image/png">
+    <script type=text/javascript src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    {# Navigation #}
+    <div id="navigation">
+      <ul>
+        <li><a href="{{ url_for('.index') }}">Home</a></li>
+        <li><a href="{{ url_for('.about', slug='about') }}">About</a></li>
+        <li><a href="{{ url_for('.show_post', post_id='1') }}">Contact</a></li>
+      </ul>
+    </div>
+    {# Header #}
+    <div id="header">
+      <h1><a href="{{ url_for('.show_post', post_id=1) }}">{{ config['SITE_TITLE'] }}</a></h1>
+    </div>
+    {# Message Flashing #}
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class=flashes>
+          {% for category, message in messages %}
+            <p class="{{ category }}">{{ message }}</p>
+          {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+    <div id="wrapper">
+      {# Main Content #}
+      <div id="content">
+        {% block body %}{% endblock %}
+      </div>
+  </div>
+  {# For Javascript #}
+  <script type=text/javascript>
+      $(function() {
+        // Show login etc. only on mouseover
+        $("#metanav").fadeTo(0, 0);
+        $("#metanav").mouseenter(function() {
+          $(this).fadeTo('normal', 1);
+        });
+        $("#metanav").mouseleave(function() {
+          $(this).fadeTo('normal', 0);
+        });
+        
+        // Show javascript confirmation dialog when deleting post
+        $(".delete-post-link").bind('click', function(e) {
+          e.preventDefault();
+          if (confirm("Really delete this post?")) {
+            $.ajax({
+              type: "POST",
+              url: $(this).attr('href'),
+              data: '',
+              success: function(redirect) {
+                location.reload();
+              }
+            });
+          }
+          return false;
+        });
+      });
+
+  </script>
+  {% block bottom %}{% endblock %}
+
+  {% block footer %}
+    {% include "footer.html" %}
+  {% endblock %}
+
+  {% block afterscript %}{% endblock %}
+  </body>
+</html>

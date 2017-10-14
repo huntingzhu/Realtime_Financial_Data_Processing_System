@@ -1,0 +1,14 @@
+<footer id="footer">
+  <div class="container clearfix">
+    <div class="text-muted pull-left">
+      {% if config.SITE_ABOUT %}
+      <a href="{{config.SITE_ABOUT}}">About</a>
+      {% endif %}
+      <span class="sep">•</span>
+      <a href="static/humans.txt">Authors</a>
+    </div>
+    <p class=" credit pull-right">
+    &copy;<time datetime="{{config.SITE_TIME}}">{{config.SITE_TIME.year}}</time> {{config.SITE_COMPANY}} All rights reserved.
+    </p>
+  </div>
+</footer>

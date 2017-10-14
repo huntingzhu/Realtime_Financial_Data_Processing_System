@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form action="/form/" method="post">
+&nbsp;&nbsp;Member(ID): {{form.member_id}} <br />
+bc_open_to_buy: {{form.bc_open_to_buy}} <br />
+&nbsp;&nbsp;&nbsp;&nbsp;Rate: {{form.int_rate}} <br />
+&nbsp;&nbsp;&nbsp;&nbsp;totalCreditLimit: {{form.totalCreditLimit}} <br />
+&nbsp;&nbsp;&nbsp;&nbsp;dti: {{form.dti}} <br />
+&nbsp;&nbsp;&nbsp;&nbsp;annual_inc: {{form.annual_inc}} <br />
+&nbsp;&nbsp;&nbsp;&nbsp;bc_util: {{form.bc_util}} <br />
+&nbsp;&nbsp;&nbsp;&nbsp;int_rate: {{form.int_rate}} <br />
+&nbsp;&nbsp;&nbsp;&nbsp;term: {{form.term}} <br />
+&nbsp;&nbsp;&nbsp;&nbsp;loan_amnt: {{form.loan_amnt}} <br />
+&nbsp;&nbsp;&nbsp;&nbsp;fund_rate: {{form.fund_rate}} <br />
+&nbsp;&nbsp;&nbsp;&nbsp;funded_amnt: {{form.funded_amnt}} <br />
+&nbsp;&nbsp;&nbsp;&nbsp;grade: {{form.grade}} <br />
+<br />
+{{form.go}} <br />
+</form>
+{% endblock %}

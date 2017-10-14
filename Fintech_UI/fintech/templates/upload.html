@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form action="/upload/" method="post" enctype="multipart/form-data">
+Please select file: {{form.DataFile}}
+<input type="submit" value="Upload">
+</form>
+{% endblock %}
