@@ -33,15 +33,15 @@ In order to produce **streaming data**, I also implements a **Kafka Producer pro
 
 ### 2.2 Storm Topology
 
-The **KafkaSpout** works as **a consumer of the Kafka Cluster** to read the applicant data from the Kafka Cluster. Then send the data to FilterBolt.
+* The **KafkaSpout** works as **a consumer of the Kafka Cluster** to read the applicant data from the Kafka Cluster. Then send the data to FilterBolt.
 
-The **FilterBolt** will **map the JSON data** to a Java object via ObjectMapper, and it will filter out the irrelevant data. Because the streaming data is not that clean, this FilterBolt will also perform as a **data cleaner**.
+* The **FilterBolt** will **map the JSON data** to a Java object via ObjectMapper, and it will filter out the irrelevant data. Because the streaming data is not that clean, this FilterBolt will also perform as a **data cleaner**.
 
-The **DecisionBolt's** job is doing a **preprocessing job**. For example, for some appicants, their credit ratings are pretty low like E, F and G. We will automatically fillter out these applicants as we want reduce the risk.
+* The **DecisionBolt's** job is doing a **preprocessing job**. For example, for some appicants, their credit ratings are pretty low like E, F and G. We will automatically fillter out these applicants as we want reduce the risk.
 
-When the **SubmitBolt** gets the preprocessed data, it will submit the data to the Risk Evaluation API, which is based on a **Logistic Regression model**. And then it will **send the evaluation result** to the SaveBolt.
+* When the **SubmitBolt** gets the preprocessed data, it will submit the data to the Risk Evaluation API, which is based on a **Logistic Regression model**. And then it will **send the evaluation result** to the SaveBolt.
 
-In the **SaveBolt**, I developed a **HBase helper class**, which is used to simplify the interactions with the HBase Database. Both of the applicant's information and his evaluation result will be stored into HBase database.
+* In the **SaveBolt**, I developed a **HBase helper class**, which is used to simplify the interactions with the HBase Database. Both of the applicant's information and his evaluation result will be stored into HBase database.
 
 
 ## 3 Deployment
